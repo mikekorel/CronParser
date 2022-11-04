@@ -42,8 +42,9 @@ machine and the environment variables set up.
 
 Apart from the config file, the application is expecting one argument representing the current
 time in the HH:MM format. To run the application with the default config and for the current time
-being 16:10, run this command:
-`java -jar CronParser.jar 16:10 < config.txt`
+being 16:10, run :
+
+`cat config.txt | java -jar CronParser.jar 16:10` or `java -jar CronParser.jar 16:10 < config.txt`
 
 
 ## Testing
