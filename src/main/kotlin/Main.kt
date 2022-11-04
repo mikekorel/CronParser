@@ -2,7 +2,12 @@ import java.lang.NumberFormatException
 
 fun main(args: Array<String>) {
 
-    val currentTime = args[0]       // HH:MM format
+    val currentTime = try {
+        args[0]       // HH:MM format
+    } catch (e: ArrayIndexOutOfBoundsException) {
+        println("No arguments passed. The application will exit.")
+        return
+    }
 
     var config = ""
     do {
