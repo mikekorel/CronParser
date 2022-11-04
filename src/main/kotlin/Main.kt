@@ -56,7 +56,7 @@ fun getExecutionTimeForTask(task: String, currTime: Time): String {
         // *:* format
         taskTime.hour == "*" && taskTime.min == "*" -> {
             // will execute immediately, just return the current time
-            "${currTime.hour}:${currTime.min} today"
+            "${currTime.hour}:${currTime.min.makeDoubleDigit()} today"
         }
 
         // HH:MM format
@@ -78,7 +78,7 @@ fun getExecutionTimeForTask(task: String, currTime: Time): String {
             if (taskTime.hour.toInt() < currTime.hour)      // task hour before current hour
                 "${taskTime.hour}:00 tomorrow"
             else if (taskTime.hour.toInt() == currTime.hour)    // task hour same as current hour
-                "${taskTime.hour}:${currTime.min} today"
+                "${taskTime.hour}:${currTime.min.makeDoubleDigit()} today"
             else                                // task hour after current hour
                 "${taskTime.hour}:00 today"
         }
@@ -112,8 +112,6 @@ data class TimeCron(
     val min: String
 )
 
-fun String.makeDoubleDigit() = if (this != "*")
-    "0$this".takeLast(2)
-else
-    this
+fun String.makeDoubleDigit() = if (this != "*") padStart(2, '0') else this
+fun Int.makeDoubleDigit() = toString().padStart(2, '0')
 

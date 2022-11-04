@@ -62,4 +62,24 @@ internal class MainKtTest {
 
         assertEquals("17:05 today - taskName", result)
     }
+
+    @Test
+    fun testGetExecutionTimeForTask_minutesRepresentationDoubleDigit_twoAsterisks() {
+        val result = getExecutionTimeForTask(
+            "* * taskName",
+            Time(0, 0)
+        )
+
+        assertEquals("0:00 today - taskName", result)
+    }
+
+    @Test
+    fun testGetExecutionTimeForTask_minutesRepresentationDoubleDigit_minuteAsterisk() {
+        val result = getExecutionTimeForTask(
+            "* 15 taskName",
+            Time(15, 0)
+        )
+
+        assertEquals("15:00 today - taskName", result)
+    }
 }
